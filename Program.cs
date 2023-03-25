@@ -21,12 +21,12 @@ namespace adodotnet{
              //..truy van
             using DbCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "SELECT TOP (5) * FROM Sanpham";
+            command.CommandText = "SELECT TOP (10) * FROM Sanpham";
 
             var datareader = command.ExecuteReader();
             while (datareader.Read())
             {
-                Console.WriteLine($"{datareader["TenSanpham"], 10}");
+                Console.WriteLine($"{datareader["TenSanpham"], 10} Gia {datareader["Gia"], 8}");
             }
             connection.Close();
         }
