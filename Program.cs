@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace adodotnet{
     class Program{
@@ -18,6 +19,15 @@ namespace adodotnet{
             connection.Open();
             Console.WriteLine(connection.State);
              //..truy van
+            using DbCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "SELECT TOP (5) * FROM Sanpham";
+
+            var datareader = command.ExecuteReader();
+            while (datareader.Read())
+            {
+                Console.WriteLine($"{datareader["TenSanpham"], 10}");
+            }
             connection.Close();
         }
     }
